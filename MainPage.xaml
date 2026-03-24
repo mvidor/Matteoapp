@@ -47,9 +47,9 @@
                         HeightRequest="214"
                         BackgroundColor="#F9FAFB">
                         <Image
-                            Source="tanjiro_card.svg"
+                            Source="tanjiro.webp"
                             Aspect="AspectFill"
-                            SemanticProperties.Description="Visuel inspire de Tanjiro Kamado" />
+                            SemanticProperties.Description="Image de Tanjiro Kamado" />
                     </Border>
 
                     <Border
@@ -60,9 +60,9 @@
                         HeightRequest="214"
                         BackgroundColor="#F9FAFB">
                         <Image
-                            Source="nezuko_card.svg"
+                            Source="nezuko.jpg"
                             Aspect="AspectFill"
-                            SemanticProperties.Description="Visuel inspire de Nezuko Kamado" />
+                            SemanticProperties.Description="Image de Nezuko Kamado" />
                     </Border>
                 </HorizontalStackLayout>
             </Border>

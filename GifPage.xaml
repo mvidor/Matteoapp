@@ -35,7 +35,7 @@
                 Padding="10"
                 BackgroundColor="White">
                 <toolkit:MediaElement
-                    Source="demon_slayer_scene.mp4"
+                    Source="embed://demon_slayer_scene.mp4"
                     HeightRequest="240"
                     Aspect="AspectFit"
                     ShouldAutoPlay="True"
