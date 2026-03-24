@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Logging;
 using MatteoAPP1.Services;
 using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.MediaElement;
 
 namespace MatteoAPP1
 {
