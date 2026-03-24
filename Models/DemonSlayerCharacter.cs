@@ -13,5 +13,9 @@ namespace MatteoAPP1.Models
         public string Affiliation { get; init; } = "Non precisee";
 
         public string ImageUrl { get; init; } = string.Empty;
+
+        public bool HasImage => !string.IsNullOrWhiteSpace(ImageUrl);
+
+        public bool HasNoImage => !HasImage;
     }
 }

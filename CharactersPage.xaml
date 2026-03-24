@@ -73,12 +73,24 @@
                                     BackgroundColor="#F3F4F6"
                                     HeightRequest="72"
                                     WidthRequest="72">
-                                    <Image
-                                        Source="characters_tab.svg"
-                                        HeightRequest="36"
-                                        WidthRequest="36"
-                                        VerticalOptions="Center"
-                                        HorizontalOptions="Center" />
+                                    <Grid>
+                                        <Image
+                                            Source="{Binding ImageUrl}"
+                                            Aspect="AspectFit"
+                                            HeightRequest="64"
+                                            WidthRequest="64"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            IsVisible="{Binding HasImage}" />
+
+                                        <Image
+                                            Source="characters_tab.svg"
+                                            HeightRequest="36"
+                                            WidthRequest="36"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding HasNoImage}" />
+                                    </Grid>
                                 </Border>
 
                                 <VerticalStackLayout Grid.Column="1" Spacing="5">
