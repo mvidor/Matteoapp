@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MatteoAPP1"
     Title="Demon Slayer"
-    Shell.TabBarForegroundColor="#BE123C"
-    Shell.TabBarTitleColor="#BE123C"
+    Shell.TabBarBackgroundColor="#FFFFFF"
+    Shell.TabBarForegroundColor="#111827"
+    Shell.TabBarTitleColor="#111827"
     Shell.TabBarUnselectedColor="#6B7280">
 
     <TabBar>

@@ -42,6 +42,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<MauiXaml Update="App.xaml" Generator="MSBuild:Compile" />
+		<MauiXaml Update="AppShell.xaml" Generator="MSBuild:Compile" />
+		<MauiXaml Update="MainPage.xaml" Generator="MSBuild:Compile" />
+		<MauiXaml Update="MoviePage.xaml" Generator="MSBuild:Compile" />
+		<MauiXaml Update="CharactersPage.xaml" Generator="MSBuild:Compile" />
+		<MauiXaml Update="GalleryPage.xaml" Generator="MSBuild:Compile" />
+		<MauiXaml Update="GifPage.xaml" Generator="MSBuild:Compile" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#7F1D1D" />
 

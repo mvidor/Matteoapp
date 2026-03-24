@@ -1,48 +1,141 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MatteoAPP1"
              x:Class="MatteoAPP1.MainPage"
+             x:DataType="local:MainPage"
+             BackgroundColor="#FCFBF8"
              Title="Accueil">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="18">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="180"
-                Aspect="AspectFit"
-                SemanticProperties.Description="Illustration de presentation Demon Slayer" />
+        <VerticalStackLayout Padding="28,32,28,24" Spacing="22">
+            <Label
+                Text="DEMON SLAYER"
+                FontSize="13"
+                CharacterSpacing="3"
+                TextColor="#9F1239"
+                HorizontalOptions="Center" />
 
             <Label
                 Text="Demon Slayer"
-                FontSize="30"
+                FontSize="38"
                 FontAttributes="Bold"
                 TextColor="#111827"
+                HorizontalOptions="Center"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Application MAUI consacree au dernier film sorti."
-                FontSize="18"
-                TextColor="#4B5563"
+                Text="Une presentation epuree du dernier film, avec ses personnages et ses scenes marquantes."
+                FontSize="17"
+                TextColor="#6B7280"
+                HorizontalTextAlignment="Center"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Presentation de l application Demon Slayer" />
+                SemanticProperties.Description="Sous titre de la page d accueil Demon Slayer" />
 
-            <Frame
-                BackgroundColor="#BE123C"
-                CornerRadius="20"
-                Padding="20"
-                HasShadow="False">
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        Text="Bienvenue dans l'univers de Tanjiro"
-                        FontSize="22"
-                        FontAttributes="Bold"
-                        TextColor="White" />
-                    <Label
-                        Text="Utilise les 4 onglets pour naviguer entre l'accueil, le film, les personnages et la galerie."
-                        FontSize="16"
-                        TextColor="#FFE4E6" />
-                </VerticalStackLayout>
-            </Frame>
+            <Border
+                Stroke="#E5E7EB"
+                StrokeThickness="1"
+                BackgroundColor="White"
+                StrokeShape="RoundRectangle 24"
+                Padding="12">
+                <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
+                    <Border
+                        Stroke="#E5E7EB"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        WidthRequest="150"
+                        HeightRequest="214"
+                        BackgroundColor="#F9FAFB">
+                        <Image
+                            Source="tanjiro_card.svg"
+                            Aspect="AspectFill"
+                            SemanticProperties.Description="Visuel inspire de Tanjiro Kamado" />
+                    </Border>
+
+                    <Border
+                        Stroke="#E5E7EB"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        WidthRequest="150"
+                        HeightRequest="214"
+                        BackgroundColor="#F9FAFB">
+                        <Image
+                            Source="nezuko_card.svg"
+                            Aspect="AspectFill"
+                            SemanticProperties.Description="Visuel inspire de Nezuko Kamado" />
+                    </Border>
+                </HorizontalStackLayout>
+            </Border>
+
+            <Button
+                Text="Voir la scene animee"
+                Clicked="OnGifButtonClicked"
+                BackgroundColor="#111827"
+                TextColor="White"
+                CornerRadius="16"
+                Padding="18,14" />
+
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="Moments cles"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    TextColor="#111827" />
+
+                <Label
+                    Text="Un carrousel minimal pour parcourir l'univers du film."
+                    FontSize="15"
+                    TextColor="#6B7280" />
+            </VerticalStackLayout>
+
+            <CarouselView
+                HeightRequest="176"
+                PeekAreaInsets="18"
+                ItemsSource="{Binding Slides}"
+                IndicatorView="SlidesIndicator">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="local:HomeSlide">
+                        <Border
+                            Margin="0,0,0,8"
+                            Padding="18"
+                            Stroke="#E5E7EB"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 22"
+                            BackgroundColor="{Binding CardColor}">
+                            <Grid ColumnDefinitions="72,*" ColumnSpacing="14">
+                                <Border
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 14"
+                                    BackgroundColor="White">
+                                    <Image
+                                        Source="{Binding ImageSource}"
+                                        HeightRequest="72"
+                                        WidthRequest="72"
+                                        Aspect="AspectFit" />
+                                </Border>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                                    <Label
+                                        Text="{Binding Title}"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        TextColor="#111827" />
+                                    <Label
+                                        Text="{Binding Description}"
+                                        FontSize="14"
+                                        TextColor="#4B5563" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <IndicatorView
+                x:Name="SlidesIndicator"
+                HorizontalOptions="Center"
+                IndicatorColor="#D1D5DB"
+                SelectedIndicatorColor="#111827" />
         </VerticalStackLayout>
     </ScrollView>
 

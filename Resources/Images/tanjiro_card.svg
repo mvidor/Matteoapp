@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 440">
+  <rect width="310" height="440" fill="#7F1D1D"/>
+  <rect x="20" y="20" width="270" height="400" rx="28" fill="#111827"/>
+  <path fill="#166534" d="M58 184c18-67 79-116 154-116 50 0 94 22 122 58-24-8-49-12-75-12-72 0-138 29-201 70z"/>
+  <ellipse cx="155" cy="236" rx="88" ry="100" fill="#F3C9A6"/>
+  <path fill="#0F172A" d="M92 186c23-42 66-69 112-69 34 0 64 15 85 40-42-9-83-4-118 13-31 14-57 37-79 67-13-16-13-31 0-51z"/>
+  <path fill="#B91C1C" d="M148 118c13-18 33-29 55-31-13 14-20 31-21 52-9-10-20-17-34-21z"/>
+  <ellipse cx="126" cy="228" rx="14" ry="10" fill="#111827"/>
+  <ellipse cx="188" cy="228" rx="14" ry="10" fill="#111827"/>
+  <circle cx="130" cy="225" r="3" fill="#fff"/>
+  <circle cx="192" cy="225" r="3" fill="#fff"/>
+  <path fill="#7C2D12" d="M136 280c10 8 23 12 35 12 13 0 26-4 36-12-8 19-21 29-36 29s-28-10-35-29z"/>
+  <text x="155" y="390" text-anchor="middle" font-size="24" font-family="Arial" fill="#FCA5A5">Tanjiro</text>
+</svg>
