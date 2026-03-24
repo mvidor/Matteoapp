@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MatteoAPP1.CharactersPage"
+             Title="Persos">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="Personnages"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#111827" />
+
+            <Frame BackgroundColor="#F97316"
+                   CornerRadius="18"
+                   Padding="18"
+                   HasShadow="False">
+                <Label Text="Tanjiro, Nezuko, Zenitsu et Inosuke pourront etre presentes ici avec leurs roles dans le film."
+                       FontSize="16"
+                       TextColor="White" />
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

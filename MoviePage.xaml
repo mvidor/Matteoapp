@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MatteoAPP1.MoviePage"
+             Title="Film">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Label Text="Dernier film"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#111827" />
+
+            <Frame BackgroundColor="#1F2937"
+                   CornerRadius="20"
+                   Padding="20"
+                   HasShadow="False">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Demon Slayer"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Une page d'introduction pour presenter le dernier film sorti, son ambiance et ses moments forts."
+                           FontSize="16"
+                           TextColor="#E5E7EB" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,8 +1,8 @@
 namespace MatteoAPP1
 {
-    public partial class MainPage : ContentPage
+    public partial class MoviePage : ContentPage
     {
-        public MainPage()
+        public MoviePage()
         {
             InitializeComponent();
         }

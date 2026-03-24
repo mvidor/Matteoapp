@@ -4,11 +4,35 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MatteoAPP1"
-    Title="MatteoAPP1">
+    Title="Demon Slayer"
+    Shell.TabBarForegroundColor="#BE123C"
+    Shell.TabBarTitleColor="#BE123C"
+    Shell.TabBarUnselectedColor="#6B7280">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Accueil"
+            Icon="home_tab.svg"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+        <ShellContent
+            Title="Film"
+            Icon="movie_tab.svg"
+            ContentTemplate="{DataTemplate local:MoviePage}"
+            Route="MoviePage" />
+
+        <ShellContent
+            Title="Persos"
+            Icon="characters_tab.svg"
+            ContentTemplate="{DataTemplate local:CharactersPage}"
+            Route="CharactersPage" />
+
+        <ShellContent
+            Title="Galerie"
+            Icon="gallery_tab.svg"
+            ContentTemplate="{DataTemplate local:GalleryPage}"
+            Route="GalleryPage" />
+    </TabBar>
 
 </Shell>
