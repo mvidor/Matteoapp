@@ -25,7 +25,7 @@
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Une presentation epuree du dernier film, avec ses personnages et ses scenes marquantes."
+                Text="Presentation de l'univers de Demon Slayer"
                 FontSize="17"
                 TextColor="#6B7280"
                 HorizontalTextAlignment="Center"
@@ -83,7 +83,7 @@
                     TextColor="#111827" />
 
                 <Label
-                    Text="Un carrousel minimal pour parcourir l'univers du film."
+                    Text="Un carrousel minimal pour parcourir l'univers de Demon Slayer."
                     FontSize="15"
                     TextColor="#6B7280" />
             </VerticalStackLayout>
