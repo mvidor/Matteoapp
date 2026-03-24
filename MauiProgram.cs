@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+using MatteoAPP1.Services;
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.MediaElement;
 
 namespace MatteoAPP1
 {
@@ -9,14 +12,22 @@ namespace MatteoAPP1
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton(new HttpClient
+            {
+                BaseAddress = new Uri("https://www.demonslayer-api.com/api/v1/")
+            });
+            builder.Services.AddSingleton<IDemonSlayerApiService, DemonSlayerApiService>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

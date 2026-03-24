@@ -17,7 +17,7 @@ namespace MatteoAPP1
             await Task.Delay(5000);
 
             BackButton.IsEnabled = true;
-            StatusLabel.Text = "Le GIF est termine, tu peux revenir a l'accueil.";
+            StatusLabel.Text = "La scene est lancee, tu peux revenir a l'accueil.";
         }
 
         private async void OnBackClicked(object? sender, EventArgs e)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MatteoAPP1.GifPage"
              BackgroundColor="#FCFBF8"
              Title="GIF">
@@ -33,12 +34,12 @@
                 StrokeShape="RoundRectangle 24"
                 Padding="10"
                 BackgroundColor="White">
-                <Image
-                    Source="tanjiro_breath.gif"
+                <toolkit:MediaElement
+                    Source="demon_slayer_scene.mp4"
                     HeightRequest="240"
                     Aspect="AspectFit"
-                    IsAnimationPlaying="True"
-                    SemanticProperties.Description="GIF anime inspire de Demon Slayer" />
+                    ShouldAutoPlay="True"
+                    ShouldShowPlaybackControls="True" />
             </Border>
 
             <Label
