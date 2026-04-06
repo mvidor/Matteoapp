@@ -18,22 +18,22 @@
             Route="MainPage" />
 
         <ShellContent
-            Title="Film"
-            Icon="movie_tab.svg"
-            ContentTemplate="{DataTemplate local:MoviePage}"
-            Route="MoviePage" />
-
-        <ShellContent
             Title="Persos"
             Icon="characters_tab.svg"
             ContentTemplate="{DataTemplate local:CharactersPage}"
             Route="CharactersPage" />
 
         <ShellContent
-            Title="Galerie"
+            Title="Ajouter"
             Icon="gallery_tab.svg"
             ContentTemplate="{DataTemplate local:GalleryPage}"
             Route="GalleryPage" />
+
+        <ShellContent
+            Title="Film"
+            Icon="movie_tab.svg"
+            ContentTemplate="{DataTemplate local:MoviePage}"
+            Route="MoviePage" />
     </TabBar>
 
 </Shell>

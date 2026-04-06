@@ -1,3 +1,6 @@
+using MatteoAPP1.Services;
+using MatteoAPP1.ViewModels;
+
 namespace MatteoAPP1
 {
     public partial class GalleryPage : ContentPage
@@ -5,6 +8,7 @@ namespace MatteoAPP1
         public GalleryPage()
         {
             InitializeComponent();
+            BindingContext = ServiceHelper.GetService<AddCharacterViewModel>();
         }
     }
 }

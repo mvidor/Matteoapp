@@ -1,24 +1,79 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MatteoAPP1.ViewModels"
              x:Class="MatteoAPP1.GalleryPage"
-             Title="Galerie">
+             x:DataType="vm:AddCharacterViewModel"
+             BackgroundColor="#FCFBF8"
+             Title="Ajouter">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
-            <Label Text="Galerie"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   TextColor="#111827" />
+        <VerticalStackLayout Padding="28,32,28,24" Spacing="18">
+            <Label
+                Text="AJOUT"
+                FontSize="13"
+                CharacterSpacing="3"
+                TextColor="#9F1239" />
 
-            <Frame BackgroundColor="#7C3AED"
-                   CornerRadius="18"
-                   Padding="18"
-                   HasShadow="False">
-                <Label Text="Cet onglet servira pour les affiches, captures ou illustrations autour de Demon Slayer."
-                       FontSize="16"
-                       TextColor="White" />
-            </Frame>
+            <Label
+                Text="Ajouter un personnage"
+                FontSize="32"
+                FontAttributes="Bold"
+                TextColor="#111827" />
+
+            <Label
+                Text="Saisis un titre, une description et une image. L'item sera ensuite visible dans la liste des personnages."
+                FontSize="16"
+                TextColor="#6B7280" />
+
+            <Border
+                Stroke="#E5E7EB"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 22"
+                BackgroundColor="White"
+                Padding="18">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Titre" FontSize="15" TextColor="#111827" />
+                    <Entry
+                        Text="{Binding Title}"
+                        Placeholder="Exemple : Zenitsu version fanart"
+                        ClearButtonVisibility="WhileEditing" />
+
+                    <Label Text="Description" FontSize="15" TextColor="#111827" />
+                    <Editor
+                        Text="{Binding Description}"
+                        Placeholder="Decris ton item"
+                        AutoSize="TextChanges"
+                        HeightRequest="120" />
+
+                    <Label Text="Image" FontSize="15" TextColor="#111827" />
+                    <Entry
+                        Text="{Binding ImageUrl}"
+                        Placeholder="Colle l'URL d'une image"
+                        Keyboard="Url"
+                        ClearButtonVisibility="WhileEditing" />
+
+                    <Label
+                        Text="{Binding ErrorMessage}"
+                        TextColor="#B91C1C"
+                        FontSize="14"
+                        IsVisible="{Binding HasError}" />
+
+                    <Label
+                        Text="{Binding SuccessMessage}"
+                        TextColor="#15803D"
+                        FontSize="14"
+                        IsVisible="{Binding HasSuccess}" />
+
+                    <Button
+                        Text="Ajouter l'item"
+                        Command="{Binding AddCharacterCommand}"
+                        BackgroundColor="#111827"
+                        TextColor="White"
+                        CornerRadius="16"
+                        Padding="18,14" />
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 

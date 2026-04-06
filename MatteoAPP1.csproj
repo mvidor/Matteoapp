@@ -47,6 +47,7 @@
 		<MauiXaml Update="MainPage.xaml" Generator="MSBuild:Compile" />
 		<MauiXaml Update="MoviePage.xaml" Generator="MSBuild:Compile" />
 		<MauiXaml Update="CharactersPage.xaml" Generator="MSBuild:Compile" />
+		<MauiXaml Update="CharacterDetailPage.xaml" Generator="MSBuild:Compile" />
 		<MauiXaml Update="GalleryPage.xaml" Generator="MSBuild:Compile" />
 		<MauiXaml Update="GifPage.xaml" Generator="MSBuild:Compile" />
 	</ItemGroup>

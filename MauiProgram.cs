@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using MatteoAPP1.Services;
 using CommunityToolkit.Maui;
+using MatteoAPP1.ViewModels;
 
 namespace MatteoAPP1
 {
@@ -24,6 +25,10 @@ namespace MatteoAPP1
                 BaseAddress = new Uri("https://www.demonslayer-api.com/api/v1/")
             });
             builder.Services.AddSingleton<IDemonSlayerApiService, DemonSlayerApiService>();
+            builder.Services.AddSingleton<ICharacterCatalogService, CharacterCatalogService>();
+            builder.Services.AddSingleton<CharactersViewModel>();
+            builder.Services.AddTransient<CharacterDetailViewModel>();
+            builder.Services.AddTransient<AddCharacterViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

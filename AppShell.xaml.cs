@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(GifPage), typeof(GifPage));
+            Routing.RegisterRoute(nameof(CharacterDetailPage), typeof(CharacterDetailPage));
         }
     }
 }

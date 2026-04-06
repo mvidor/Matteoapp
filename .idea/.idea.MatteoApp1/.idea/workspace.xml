@@ -11,7 +11,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2f69917-3570-4689-9b36-1019f342420e" name="Changes" comment="" />
+    <list default="true" id="e2f69917-3570-4689-9b36-1019f342420e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/AppShell.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AppShell.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CharactersPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/CharactersPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CharactersPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CharactersPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatteoAPP1.csproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/MatteoAPP1.csproj.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MauiProgram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/DemonSlayerCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/DemonSlayerCharacter.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,10 +32,14 @@
       <facet id="MatteoAPP1/invalid/Android Facet - MatteoAPP1" />
     </ignored-facets>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="3BOR31LYvVemhypfajlZ5XWJm5J" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,8 +47,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Android.MatteoAPP1.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "main",
@@ -50,7 +63,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="iOS.MatteoAPP1">
+  <component name="RunManager" selected="Android.MatteoAPP1">
     <configuration name="MatteoAPP1: Windows Machine" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MatteoAPP1.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net9.0-windows10.0.19041.0" />
@@ -107,6 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1774357931391</updated>
       <workItem from="1774357938519" duration="261000" />
+      <workItem from="1774366773961" duration="167000" />
     </task>
     <servers />
   </component>

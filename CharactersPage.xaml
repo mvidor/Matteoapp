@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MatteoAPP1"
+             xmlns:vm="clr-namespace:MatteoAPP1.ViewModels"
              xmlns:models="clr-namespace:MatteoAPP1.Models"
              x:Class="MatteoAPP1.CharactersPage"
-             x:DataType="local:CharactersPage"
+             x:DataType="vm:CharactersViewModel"
              BackgroundColor="#FCFBF8"
              Title="Persos">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="28,32,28,24" Spacing="18">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*">
+        <VerticalStackLayout Grid.Row="0" Padding="28,32,28,0" Spacing="18">
             <Label
                 Text="PERSONNAGES"
                 FontSize="13"
@@ -23,104 +23,96 @@
                 TextColor="#111827" />
 
             <Label
-                Text="Les donnees viennent d'une API Demon Slayer via un service distinct."
+                Text="Une liste MVVM branchee sur l'API pour afficher image et nom, puis un detail au clic."
                 FontSize="16"
                 TextColor="#6B7280" />
 
             <Button
                 Text="Actualiser la liste"
-                Clicked="OnRefreshClicked"
+                Command="{Binding RefreshCommand}"
                 BackgroundColor="#111827"
                 TextColor="White"
                 CornerRadius="16"
                 Padding="18,14" />
-
-            <ActivityIndicator
-                IsRunning="{Binding IsLoading}"
-                IsVisible="{Binding IsLoading}"
-                Color="#9F1239"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="{Binding ErrorMessage}"
-                TextColor="#B91C1C"
-                FontSize="15"
-                IsVisible="{Binding HasError}" />
-
-            <CollectionView
-                ItemsSource="{Binding Characters}"
-                SelectionMode="None">
-                <CollectionView.EmptyView>
-                    <Label
-                        Text="Aucun personnage charge pour le moment."
-                        FontSize="15"
-                        TextColor="#6B7280" />
-                </CollectionView.EmptyView>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:DemonSlayerCharacter">
-                        <Border
-                            Margin="0,0,0,14"
-                            Padding="18"
-                            Stroke="#E5E7EB"
-                            StrokeThickness="1"
-                            StrokeShape="RoundRectangle 20"
-                            BackgroundColor="White">
-                            <Grid ColumnDefinitions="72,*" ColumnSpacing="14">
-                                <Border
-                                    StrokeThickness="0"
-                                    StrokeShape="RoundRectangle 14"
-                                    BackgroundColor="#F3F4F6"
-                                    HeightRequest="72"
-                                    WidthRequest="72">
-                                    <Grid>
-                                        <Image
-                                            Source="{Binding ImageUrl}"
-                                            Aspect="AspectFit"
-                                            HeightRequest="64"
-                                            WidthRequest="64"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
-                                            IsVisible="{Binding HasImage}" />
-
-                                        <Image
-                                            Source="characters_tab.svg"
-                                            HeightRequest="36"
-                                            WidthRequest="36"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center"
-                                            IsVisible="{Binding HasNoImage}" />
-                                    </Grid>
-                                </Border>
-
-                                <VerticalStackLayout Grid.Column="1" Spacing="5">
-                                    <Label
-                                        Text="{Binding Name}"
-                                        FontSize="20"
-                                        FontAttributes="Bold"
-                                        TextColor="#111827" />
-
-                                    <Label
-                                        Text="{Binding Race, StringFormat='Race : {0}'}"
-                                        FontSize="14"
-                                        TextColor="#4B5563" />
-
-                                    <Label
-                                        Text="{Binding Gender, StringFormat='Genre : {0}'}"
-                                        FontSize="14"
-                                        TextColor="#4B5563" />
-
-                                    <Label
-                                        Text="{Binding Affiliation, StringFormat='Affiliation : {0}'}"
-                                        FontSize="14"
-                                        TextColor="#4B5563" />
-                                </VerticalStackLayout>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
         </VerticalStackLayout>
-    </ScrollView>
+
+        <ActivityIndicator
+            Grid.Row="1"
+            Margin="28,18,28,0"
+            IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
+            Color="#9F1239"
+            HorizontalOptions="Center" />
+
+        <Label
+            Grid.Row="2"
+            Margin="28,18,28,0"
+            Text="{Binding ErrorMessage}"
+            TextColor="#B91C1C"
+            FontSize="15"
+            IsVisible="{Binding HasError}" />
+
+        <CollectionView
+            Grid.Row="4"
+            Margin="28,18,28,24"
+            ItemsSource="{Binding Characters}"
+            SelectedItem="{Binding SelectedCharacter, Mode=TwoWay}"
+            SelectionMode="Single">
+            <CollectionView.EmptyView>
+                <Label
+                    Text="Aucun personnage charge pour le moment."
+                    FontSize="15"
+                    TextColor="#6B7280" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:DemonSlayerCharacter">
+                    <Border
+                        Margin="0,0,0,14"
+                        Padding="18"
+                        Stroke="#E5E7EB"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 20"
+                        BackgroundColor="White">
+                        <Grid ColumnDefinitions="72,*" ColumnSpacing="14">
+                            <Border
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 14"
+                                BackgroundColor="#F3F4F6"
+                                HeightRequest="72"
+                                WidthRequest="72">
+                                <Grid>
+                                    <Image
+                                        Source="{Binding DisplayImageSource}"
+                                        Aspect="AspectFit"
+                                        HeightRequest="64"
+                                        WidthRequest="64"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        IsVisible="{Binding HasImage}" />
+
+                                    <Image
+                                        Source="characters_tab.svg"
+                                        HeightRequest="36"
+                                        WidthRequest="36"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding HasNoImage}" />
+                                </Grid>
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="21"
+                                    FontAttributes="Bold"
+                                    TextColor="#111827" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 
 </ContentPage>
