@@ -2,29 +2,145 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MatteoAPP1.MoviePage"
-             Title="Film">
+             BackgroundColor="#FCFBF8"
+             Title="Note">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="18">
-            <Label Text="Dernier film"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   TextColor="#111827" />
+        <VerticalStackLayout Padding="24,32,24,24" Spacing="20">
+            <Label
+                Text="Noter les films Demon Slayer"
+                FontSize="30"
+                FontAttributes="Bold"
+                TextColor="#111827" />
 
-            <Frame BackgroundColor="#1F2937"
-                   CornerRadius="20"
-                   Padding="20"
-                   HasShadow="False">
-                <VerticalStackLayout Spacing="12">
-                    <Label Text="Demon Slayer"
-                           FontSize="24"
-                           FontAttributes="Bold"
-                           TextColor="White" />
-                    <Label Text="Une page d'introduction pour presenter le dernier film sorti, son ambiance et ses moments forts."
-                           FontSize="16"
-                           TextColor="#E5E7EB" />
+            <Label
+                Text="Ajoute plusieurs avis par film, garde-les en memoire et supprime-les si besoin."
+                FontSize="16"
+                TextColor="#6B7280" />
+
+            <Border
+                Stroke="#E5E7EB"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 22"
+                BackgroundColor="White"
+                Padding="18">
+                <VerticalStackLayout Spacing="14">
+                    <Border
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 18"
+                        BackgroundColor="#F3F4F6"
+                        HeightRequest="200">
+                        <Image
+                            Source="train_de_l_infini.jpg"
+                            Aspect="AspectFill" />
+                    </Border>
+
+                    <Label
+                        Text="Le Train de l'Infini"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        TextColor="#111827" />
+
+                    <Label
+                        Text="Tanjiro, Nezuko, Zenitsu et Inosuke montent a bord du train avec Rengoku pour affronter une mission dangereuse."
+                        FontSize="15"
+                        TextColor="#4B5563" />
+
+                    <Label
+                        x:Name="TrainRatingLabel"
+                        Text="Ta note : 0/5"
+                        FontSize="15"
+                        TextColor="#111827" />
+
+                    <HorizontalStackLayout Spacing="8">
+                        <Button x:Name="TrainStar1" Text="&#9734;" Clicked="OnTrainStarClicked" CommandParameter="1" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainStar2" Text="&#9734;" Clicked="OnTrainStarClicked" CommandParameter="2" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainStar3" Text="&#9734;" Clicked="OnTrainStarClicked" CommandParameter="3" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainStar4" Text="&#9734;" Clicked="OnTrainStarClicked" CommandParameter="4" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainStar5" Text="&#9734;" Clicked="OnTrainStarClicked" CommandParameter="5" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                    </HorizontalStackLayout>
+
+                    <Editor
+                        x:Name="TrainReviewEditor"
+                        Placeholder="Exemple : Tres bien"
+                        AutoSize="TextChanges"
+                        HeightRequest="100" />
+
+                    <Button
+                        Text="Ajouter cet avis"
+                        Clicked="OnAddTrainCommentClicked"
+                        BackgroundColor="#111827"
+                        TextColor="White"
+                        CornerRadius="16"
+                        Padding="18,14" />
+
+                    <VerticalStackLayout
+                        x:Name="TrainCommentsLayout"
+                        Spacing="10" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
+
+            <Border
+                Stroke="#E5E7EB"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 22"
+                BackgroundColor="White"
+                Padding="18">
+                <VerticalStackLayout Spacing="14">
+                    <Border
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 18"
+                        BackgroundColor="#F3F4F6"
+                        HeightRequest="200">
+                        <Image
+                            Source="chateau_de_l_infini.jpg"
+                            Aspect="AspectFill" />
+                    </Border>
+
+                    <Label
+                        Text="Le Chateau de l'infini"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        TextColor="#111827" />
+
+                    <Label
+                        Text="Tanjiro et les pourfendeurs affrontent Muzan et les demons superieurs dans le Chateau de l'infini."
+                        FontSize="15"
+                        TextColor="#4B5563" />
+
+                    <Label
+                        x:Name="TrainingRatingLabel"
+                        Text="Ta note : 0/5"
+                        FontSize="15"
+                        TextColor="#111827" />
+
+                    <HorizontalStackLayout Spacing="8">
+                        <Button x:Name="TrainingStar1" Text="&#9734;" Clicked="OnTrainingStarClicked" CommandParameter="1" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainingStar2" Text="&#9734;" Clicked="OnTrainingStarClicked" CommandParameter="2" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainingStar3" Text="&#9734;" Clicked="OnTrainingStarClicked" CommandParameter="3" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainingStar4" Text="&#9734;" Clicked="OnTrainingStarClicked" CommandParameter="4" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                        <Button x:Name="TrainingStar5" Text="&#9734;" Clicked="OnTrainingStarClicked" CommandParameter="5" FontSize="28" WidthRequest="44" HeightRequest="44" BackgroundColor="#F9FAFB" TextColor="#D97706" CornerRadius="12" Padding="0" />
+                    </HorizontalStackLayout>
+
+                    <Editor
+                        x:Name="TrainingReviewEditor"
+                        Placeholder="Exemple : Tres bien"
+                        AutoSize="TextChanges"
+                        HeightRequest="100" />
+
+                    <Button
+                        Text="Ajouter cet avis"
+                        Clicked="OnAddTrainingCommentClicked"
+                        BackgroundColor="#111827"
+                        TextColor="White"
+                        CornerRadius="16"
+                        Padding="18,14" />
+
+                    <VerticalStackLayout
+                        x:Name="TrainingCommentsLayout"
+                        Spacing="10" />
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 

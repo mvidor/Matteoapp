@@ -9,12 +9,6 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="28,32,28,24" Spacing="18">
-            <Label
-                Text="DETAIL"
-                FontSize="13"
-                CharacterSpacing="3"
-                TextColor="#9F1239" />
-
             <Border
                 Stroke="#E5E7EB"
                 StrokeThickness="1"

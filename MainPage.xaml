@@ -10,13 +10,6 @@
     <ScrollView>
         <VerticalStackLayout Padding="28,32,28,24" Spacing="22">
             <Label
-                Text="DEMON SLAYER"
-                FontSize="13"
-                CharacterSpacing="3"
-                TextColor="#9F1239"
-                HorizontalOptions="Center" />
-
-            <Label
                 Text="Demon Slayer"
                 FontSize="38"
                 FontAttributes="Bold"
@@ -75,19 +68,6 @@
                 CornerRadius="16"
                 Padding="18,14" />
 
-            <VerticalStackLayout Spacing="6">
-                <Label
-                    Text="Moments cles"
-                    FontSize="24"
-                    FontAttributes="Bold"
-                    TextColor="#111827" />
-
-                <Label
-                    Text="Un carrousel minimal pour parcourir l'univers de Demon Slayer."
-                    FontSize="15"
-                    TextColor="#6B7280" />
-            </VerticalStackLayout>
-
             <CarouselView
                 HeightRequest="176"
                 PeekAreaInsets="18"
@@ -136,6 +116,7 @@
                 HorizontalOptions="Center"
                 IndicatorColor="#D1D5DB"
                 SelectedIndicatorColor="#111827" />
+
         </VerticalStackLayout>
     </ScrollView>
 

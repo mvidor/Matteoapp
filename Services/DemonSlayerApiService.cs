@@ -23,8 +23,36 @@ namespace MatteoAPP1.Services
             return ReadCharacters(document.RootElement);
         }
 
+        public async Task<DemonSlayerCharacter?> GetCharacterByNameAsync(string name, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return null;
+            }
+
+            var encodedName = Uri.EscapeDataString(name.Trim());
+            using var response = await _httpClient.GetAsync($"characters?name={encodedName}", cancellationToken);
+            response.EnsureSuccessStatusCode();
+
+            await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            using var document = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken);
+            var characters = ReadCharacters(document.RootElement);
+
+            return characters
+                .FirstOrDefault(character => string.Equals(character.Name, name.Trim(), StringComparison.OrdinalIgnoreCase))
+                ?? characters.FirstOrDefault();
+        }
+
         private static IReadOnlyList<DemonSlayerCharacter> ReadCharacters(JsonElement root)
         {
+            var characters = new List<DemonSlayerCharacter>();
+
+            if (root.ValueKind == JsonValueKind.Object && LooksLikeCharacter(root))
+            {
+                AddCharacter(root, characters);
+                return characters;
+            }
+
             var source = root.ValueKind switch
             {
                 JsonValueKind.Array => root,
@@ -34,30 +62,42 @@ namespace MatteoAPP1.Services
 
             if (source.ValueKind != JsonValueKind.Array)
             {
-                return Array.Empty<DemonSlayerCharacter>();
+                return characters;
             }
-
-            var characters = new List<DemonSlayerCharacter>();
 
             foreach (var item in source.EnumerateArray())
             {
-                if (item.ValueKind != JsonValueKind.Object)
-                {
-                    continue;
-                }
-
-                characters.Add(new DemonSlayerCharacter
-                {
-                    Id = ReadString(item, "id", "_id"),
-                    Name = ReadString(item, "name", "characterName"),
-                    Race = ReadString(item, "race", "species"),
-                    Gender = ReadString(item, "gender", "sex"),
-                    Affiliation = ReadComposite(item, "affiliation", "group", "organization"),
-                    ImageUrl = ReadString(item, "image", "img", "photo")
-                });
+                AddCharacter(item, characters);
             }
 
             return characters;
+        }
+
+        private static void AddCharacter(JsonElement item, List<DemonSlayerCharacter> characters)
+        {
+            if (item.ValueKind != JsonValueKind.Object)
+            {
+                return;
+            }
+
+            characters.Add(new DemonSlayerCharacter
+            {
+                Id = ReadString(item, "id", "_id"),
+                Name = ReadString(item, "name", "characterName"),
+                Race = ReadString(item, "race", "species"),
+                Gender = ReadString(item, "gender", "sex"),
+                Affiliation = ReadComposite(item, "affiliation", "group", "organization"),
+                ImageUrl = ReadString(item, "image", "img", "photo")
+            });
+        }
+
+        private static bool LooksLikeCharacter(JsonElement item)
+        {
+            return item.TryGetProperty("name", out _)
+                || item.TryGetProperty("characterName", out _)
+                || item.TryGetProperty("image", out _)
+                || item.TryGetProperty("img", out _)
+                || item.TryGetProperty("photo", out _);
         }
 
         private static JsonElement FindArray(JsonElement root)

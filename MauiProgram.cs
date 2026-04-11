@@ -24,6 +24,7 @@ namespace MatteoAPP1
             {
                 BaseAddress = new Uri("https://www.demonslayer-api.com/api/v1/")
             });
+            builder.Services.AddSingleton<IAppDatabaseService, AppDatabaseService>();
             builder.Services.AddSingleton<IDemonSlayerApiService, DemonSlayerApiService>();
             builder.Services.AddSingleton<ICharacterCatalogService, CharacterCatalogService>();
             builder.Services.AddSingleton<CharactersViewModel>();

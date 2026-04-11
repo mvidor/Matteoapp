@@ -18,7 +18,7 @@
             Route="MainPage" />
 
         <ShellContent
-            Title="Persos"
+            Title="Perso"
             Icon="characters_tab.svg"
             ContentTemplate="{DataTemplate local:CharactersPage}"
             Route="CharactersPage" />
@@ -30,7 +30,7 @@
             Route="GalleryPage" />
 
         <ShellContent
-            Title="Film"
+            Title="Note"
             Icon="movie_tab.svg"
             ContentTemplate="{DataTemplate local:MoviePage}"
             Route="MoviePage" />

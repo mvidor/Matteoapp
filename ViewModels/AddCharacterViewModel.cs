@@ -1,5 +1,7 @@
 using System.Windows.Input;
 using MatteoAPP1.Models;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
 using MatteoAPP1.Services;
 
 namespace MatteoAPP1.ViewModels
@@ -9,7 +11,7 @@ namespace MatteoAPP1.ViewModels
         private readonly ICharacterCatalogService _catalogService;
         private string _title = string.Empty;
         private string _description = string.Empty;
-        private string _imageUrl = string.Empty;
+        private string _imagePath = string.Empty;
         private string _errorMessage = string.Empty;
         private string _successMessage = string.Empty;
         private bool _isSubmitting;
@@ -17,8 +19,11 @@ namespace MatteoAPP1.ViewModels
         public AddCharacterViewModel(ICharacterCatalogService catalogService)
         {
             _catalogService = catalogService;
+            PickImageCommand = new Command(async () => await PickImageAsync(), () => !IsSubmitting);
             AddCharacterCommand = new Command(async () => await AddCharacterAsync(), () => !IsSubmitting);
         }
+
+        public ICommand PickImageCommand { get; }
 
         public ICommand AddCharacterCommand { get; }
 
@@ -34,11 +39,25 @@ namespace MatteoAPP1.ViewModels
             set => SetProperty(ref _description, value);
         }
 
-        public string ImageUrl
+        public string ImagePath
         {
-            get => _imageUrl;
-            set => SetProperty(ref _imageUrl, value);
+            get => _imagePath;
+            set
+            {
+                if (SetProperty(ref _imagePath, value))
+                {
+                    OnPropertyChanged(nameof(HasImage));
+                    OnPropertyChanged(nameof(ImagePreviewSource));
+                    OnPropertyChanged(nameof(ImageLabel));
+                }
+            }
         }
+
+        public string ImageLabel => HasImage ? Path.GetFileName(ImagePath) : "Aucune image selectionnee";
+
+        public bool HasImage => !string.IsNullOrWhiteSpace(ImagePath);
+
+        public ImageSource? ImagePreviewSource => ImageSourceHelper.Resolve(ImagePath);
 
         public string ErrorMessage
         {
@@ -73,10 +92,57 @@ namespace MatteoAPP1.ViewModels
             get => _isSubmitting;
             set
             {
-                if (SetProperty(ref _isSubmitting, value) && AddCharacterCommand is Command command)
+                if (SetProperty(ref _isSubmitting, value))
                 {
-                    command.ChangeCanExecute();
+                    if (AddCharacterCommand is Command addCommand)
+                    {
+                        addCommand.ChangeCanExecute();
+                    }
+
+                    if (PickImageCommand is Command pickCommand)
+                    {
+                        pickCommand.ChangeCanExecute();
+                    }
                 }
+            }
+        }
+
+        private async Task PickImageAsync()
+        {
+            ErrorMessage = string.Empty;
+            SuccessMessage = string.Empty;
+
+            try
+            {
+                var result = await FilePicker.Default.PickAsync(new PickOptions
+                {
+                    PickerTitle = "Choisir une image",
+                    FileTypes = FilePickerFileType.Images
+                });
+
+                if (result is null)
+                {
+                    return;
+                }
+
+                await using var sourceStream = await result.OpenReadAsync();
+                var extension = Path.GetExtension(result.FileName);
+                if (string.IsNullOrWhiteSpace(extension))
+                {
+                    extension = ".jpg";
+                }
+
+                var localFileName = $"{Guid.NewGuid():N}{extension}";
+                var localPath = Path.Combine(FileSystem.AppDataDirectory, localFileName);
+
+                await using var destinationStream = File.Create(localPath);
+                await sourceStream.CopyToAsync(destinationStream);
+
+                ImagePath = localPath;
+            }
+            catch
+            {
+                ErrorMessage = "Impossible de selectionner cette image pour le moment.";
             }
         }
 
@@ -87,7 +153,7 @@ namespace MatteoAPP1.ViewModels
 
             if (string.IsNullOrWhiteSpace(Title) ||
                 string.IsNullOrWhiteSpace(Description) ||
-                string.IsNullOrWhiteSpace(ImageUrl))
+                string.IsNullOrWhiteSpace(ImagePath))
             {
                 ErrorMessage = "Merci de saisir un titre, une description et une image.";
                 return;
@@ -101,7 +167,7 @@ namespace MatteoAPP1.ViewModels
                 {
                     Id = Guid.NewGuid().ToString("N"),
                     Name = Title.Trim(),
-                    ImageUrl = ImageUrl.Trim(),
+                    ImageUrl = ImagePath,
                     CustomDescription = Description.Trim(),
                     Race = "Creation utilisateur",
                     Gender = "Inconnu",
@@ -110,8 +176,8 @@ namespace MatteoAPP1.ViewModels
 
                 Title = string.Empty;
                 Description = string.Empty;
-                ImageUrl = string.Empty;
-                SuccessMessage = "Item ajoute. Il est maintenant visible dans la liste des personnages.";
+                ImagePath = string.Empty;
+                SuccessMessage = "Personnage ajoute avec une image locale.";
 
                 await Shell.Current.GoToAsync("//CharactersPage");
             }

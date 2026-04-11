@@ -22,6 +22,11 @@ namespace MatteoAPP1
                     return ImageSource.FromFile(absoluteUri.LocalPath);
                 }
 
+                if (!LooksLikeRemoteImage(absoluteUri))
+                {
+                    return null;
+                }
+
                 return ImageSource.FromUri(absoluteUri);
             }
 
@@ -51,6 +56,18 @@ namespace MatteoAPP1
             }
 
             return BundledImageExists(normalized) ? ImageSource.FromFile(normalized) : null;
+        }
+
+        private static bool LooksLikeRemoteImage(Uri uri)
+        {
+            var path = uri.AbsolutePath;
+            if (HasKnownExtension(path))
+            {
+                return true;
+            }
+
+            var query = uri.Query;
+            return KnownExtensions.Any(extension => query.Contains(extension, StringComparison.OrdinalIgnoreCase));
         }
 
         private static bool HasKnownExtension(string path)

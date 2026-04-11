@@ -11,21 +11,10 @@
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,*">
         <VerticalStackLayout Grid.Row="0" Padding="28,32,28,0" Spacing="18">
             <Label
-                Text="PERSONNAGES"
-                FontSize="13"
-                CharacterSpacing="3"
-                TextColor="#9F1239" />
-
-            <Label
                 Text="Personnages Demon Slayer"
                 FontSize="32"
                 FontAttributes="Bold"
                 TextColor="#111827" />
-
-            <Label
-                Text="Une liste MVVM branchee sur l'API pour afficher image et nom, puis un detail au clic."
-                FontSize="16"
-                TextColor="#6B7280" />
 
             <Button
                 Text="Actualiser la liste"

@@ -10,19 +10,13 @@
     <ScrollView>
         <VerticalStackLayout Padding="28,32,28,24" Spacing="18">
             <Label
-                Text="AJOUT"
-                FontSize="13"
-                CharacterSpacing="3"
-                TextColor="#9F1239" />
-
-            <Label
                 Text="Ajouter un personnage"
                 FontSize="32"
                 FontAttributes="Bold"
                 TextColor="#111827" />
 
             <Label
-                Text="Saisis un titre, une description et une image. L'item sera ensuite visible dans la liste des personnages."
+                Text="Saisis un titre, une description et choisis une image locale."
                 FontSize="16"
                 TextColor="#6B7280" />
 
@@ -47,11 +41,32 @@
                         HeightRequest="120" />
 
                     <Label Text="Image" FontSize="15" TextColor="#111827" />
-                    <Entry
-                        Text="{Binding ImageUrl}"
-                        Placeholder="Colle l'URL d'une image"
-                        Keyboard="Url"
-                        ClearButtonVisibility="WhileEditing" />
+
+                    <Button
+                        Text="Choisir une image"
+                        Command="{Binding PickImageCommand}"
+                        BackgroundColor="#F3F4F6"
+                        TextColor="#111827"
+                        CornerRadius="14"
+                        Padding="16,12" />
+
+                    <Label
+                        Text="{Binding ImageLabel}"
+                        FontSize="14"
+                        TextColor="#6B7280" />
+
+                    <Border
+                        Stroke="#E5E7EB"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 16"
+                        BackgroundColor="#F9FAFB"
+                        Padding="10"
+                        IsVisible="{Binding HasImage}">
+                        <Image
+                            Source="{Binding ImagePreviewSource}"
+                            HeightRequest="180"
+                            Aspect="AspectFit" />
+                    </Border>
 
                     <Label
                         Text="{Binding ErrorMessage}"
